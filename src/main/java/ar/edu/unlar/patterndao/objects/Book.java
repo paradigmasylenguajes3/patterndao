@@ -9,23 +9,33 @@ package ar.edu.unlar.patterndao.objects;
  * @author lrcoder
  */
 public class Book {
-
-    private int isbn;
+        
+    private int id;
+    private String isbn;
     private String bookName;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Book() {
     }
 
-    public Book(int isbn, String bookName) {
+    public Book(int id,String isbn, String bookName) {
+        this.id = id;
         this.isbn = isbn;
         this.bookName = bookName;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(int isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 

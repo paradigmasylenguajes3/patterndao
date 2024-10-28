@@ -7,6 +7,7 @@ package ar.edu.unlar.patterndao;
 
 import ar.edu.unlar.patterndao.daoimpl.BookDaoImpl;
 import ar.edu.unlar.patterndao.objects.Book;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,21 +19,9 @@ public class Patterndao {
         // Agregar un libro a nuestro Data Source
         BookDaoImpl dataSource = new BookDaoImpl();
         
-        Book book = new Book(123, "Docker");
+        ArrayList<Book> listado = dataSource.getAllBooks();
         
-        dataSource.saveBook(book);
-        
-        
-        System.out.println(dataSource.getAllBooks());
-        
-        dataSource.deleteBook(1);
-       
-        System.out.println(dataSource.getAllBooks());
-        
-        System.out.println(dataSource.getBookByIsbn(2));
-        
-        
-        
+        System.out.println(listado.size());
         
         
     }
