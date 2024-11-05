@@ -6,6 +6,7 @@ package ar.edu.unlar.patterndao.dao;
 
 import ar.edu.unlar.patterndao.objects.Book;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  *
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 public interface BookDao {
     
     public ArrayList<Book> getAllBooks();
-    public Book getBookByIsbn(String isbn);
-    void saveBook(Book book);
+    public Optional<Book> getBookByIsbn(String isbn);
+    void insertBook(Book book);
     void deleteBook(int isbn);
     void updateBook(Book book);
 }

@@ -30,6 +30,12 @@ public class Book {
         this.isbn = isbn;
         this.bookName = bookName;
     }
+    
+    public Book(String isbn, String bookName)
+    {
+        this.isbn = isbn;
+        this.bookName = bookName;
+    }
 
     public String getIsbn() {
         return isbn;
