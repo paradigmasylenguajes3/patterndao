@@ -8,10 +8,12 @@ import ar.edu.unlar.patterndao.dao.BookDao;
 import ar.edu.unlar.patterndao.objects.Book;
 import ar.edu.unlar.patterndao.utils.ConnectionDB;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,14 +50,11 @@ public class BookDaoImpl implements BookDao{
                     
                 }
                 
-                
             } catch (SQLException ex) {
                 Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
    
-        } catch (SQLException ex) {
-            Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BookDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listadoLibros;
@@ -63,26 +62,48 @@ public class BookDaoImpl implements BookDao{
     }
 
     @Override
-    public Book getBookByIsbn(String isbn) {
-       return new Book();
+    public Optional<Book> getBookByIsbn(String isbn) {
        
+        return Optional.empty();
     }
 
     @Override
-    public void saveBook(Book book) {
-       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insertBook(Book entity) {
+        String sql = "INSERT INTO public.books (isbn,name) VALUES (?,?)";
+
+        try {
+            Connection conn = ConnectionDB.obtenerConexion();
+
+            PreparedStatement prepareStatement = conn.prepareStatement(sql);
+            prepareStatement.setString(1, entity.getIsbn());
+            prepareStatement.setString(2, entity.getBookName());
+            prepareStatement.executeUpdate();
+            conn.close();
+        } catch (SQLException | ClassNotFoundException e){
+            System.out.println("fallo al intentar escribir en la base de datos");
+        }
 
     }
 
     @Override
     public void deleteBook(int isbn) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    
     }
 
     @Override
-    public void updateBook(Book book) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void updateBook(Book entity) {
+        String sql = "UPDATE public.books SET name='"+entity.getBookName()+"', isbn='"+entity.getIsbn()+"' WHERE id="+entity.getId()+";";
+
+        try{
+            Connection conn = ConnectionDB.obtenerConexion();
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+            conn.close();
+
+        }catch(SQLException | ClassNotFoundException e){
+            System.out.println(e);
+        }
+
     }
-    
-}
+
+    }
