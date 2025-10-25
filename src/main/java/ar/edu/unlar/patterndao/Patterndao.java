@@ -22,7 +22,7 @@ public class Patterndao {
         ArrayList<Book> listado = dataSource.getAllBooks();
         
         //Book book = new Book("aaa123", "Java 17");
-        Book bookToUpdate = new Book(3,"bb1123","PHP Book");
+        Book bookToUpdate = new Book(1,"123","PHP Book");
         
         //dataSource.insertBook(book);
         // actualizamos un libro

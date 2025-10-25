@@ -30,6 +30,7 @@ public class BookDaoImpl implements BookDao{
     @Override
     public ArrayList<Book> getAllBooks() {
         ArrayList<Book> listadoLibros = new ArrayList<>();
+        
         try {
             String query = "select * from books;";
             
@@ -41,7 +42,7 @@ public class BookDaoImpl implements BookDao{
             {
                 while(rs.next()){
                     String isbn = rs.getString("isbn");
-                    String name = rs.getString("name");
+                    String name = rs.getString("book_name");
                     int id = rs.getInt("id");
                     // Esto es un registro de la tabla libros convertido en objeto
                     Book book = new Book(id, isbn,name);
@@ -92,7 +93,7 @@ public class BookDaoImpl implements BookDao{
 
     @Override
     public void updateBook(Book entity) {
-        String sql = "UPDATE public.books SET name='"+entity.getBookName()+"', isbn='"+entity.getIsbn()+"' WHERE id="+entity.getId()+";";
+        String sql = "UPDATE public.books SET book_name='"+entity.getBookName()+"', isbn='"+entity.getIsbn()+"' WHERE id="+entity.getId()+";";
 
         try{
             Connection conn = ConnectionDB.obtenerConexion();

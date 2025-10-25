@@ -4,6 +4,8 @@
  */
 package ar.edu.unlar.patterndao.objects;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author lrcoder
@@ -13,6 +15,7 @@ public class Book {
     private int id;
     private String isbn;
     private String bookName;
+    private ArrayList<Author> authors = new ArrayList<>();
 
     public int getId() {
         return id;

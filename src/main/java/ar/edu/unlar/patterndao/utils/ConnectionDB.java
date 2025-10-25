@@ -28,19 +28,19 @@ public class ConnectionDB {
 
    public static Connection obtenerConexion() throws SQLException, ClassNotFoundException {
       // Read enviroment variables
-      Dotenv dotenv;
-      dotenv = Dotenv.configure().load();
+      //Dotenv dotenv;
+      //dotenv = Dotenv.configure().load();
       
       if (conn == null) {
          try {
             //Set Values from  .env configuration file
-            String POSTGRES_USER = dotenv.get("POSTGRES_USER");
-            String POSTGRES_PASSWORD = dotenv.get("POSTGRES_PASSWORD");
+            //String POSTGRES_USER = dotenv.get("POSTGRES_USER");
+            //String POSTGRES_PASSWORD = dotenv.get("POSTGRES_PASSWORD");
             
             // Set Driver to Database
             Class.forName(JDBC_DRIVER);
              //STEP 3: Open a connection
-            conn = DriverManager.getConnection(DB_URL, POSTGRES_USER, POSTGRES_PASSWORD);
+            conn = DriverManager.getConnection(DB_URL, "dbadm", "dbpwd");
          } catch (SQLException ex) {
             System.out.println("fallo intentando ingresar credenciales");
          } catch (ClassNotFoundException ex) {
